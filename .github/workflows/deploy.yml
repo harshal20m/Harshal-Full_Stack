@@ -25,12 +25,8 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Configure Git
-        run: |
-          git config --global user.name "harshal20m"
-          git config --global user.email "20harshalmali@gmail.com"
-
       - name: Deploy to GitHub Pages
-        run: npm run deploy
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
